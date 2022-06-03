@@ -25,8 +25,8 @@ app.use('/solve_captcha', async (req, res) => {
         await worker.loadLanguage('eng');
         await worker.initialize('eng');
         const { data: { text } } = await worker.recognize(imageUrl);
+        console.log(`OCR Result: ${text}`);
         const result = eval(text.split("=")[0]);
-        // await worker.terminate(); // Causes Issue - need help
 
         console.log(`Solved: ${result}`);
         res.status(200).json({ result });
